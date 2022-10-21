@@ -12,12 +12,11 @@ from flask.logging import create_logger
 app = Flask(__name__)
 app.config.from_object(Config)
 # TODO: Add any logging levels and handlers with app.logger
-LOG = create_logger(app)
-LOG.setLevel(logging.INFO)
-streamHandler = logging.StreamHandler()
-streamHandler.setLevel(logging.INFO)
-LOG.addHandler(streamHandler)
-
+logging.basicConfig(
+    
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S')
 Session(app)
 db = SQLAlchemy(app)
 login = LoginManager(app)
